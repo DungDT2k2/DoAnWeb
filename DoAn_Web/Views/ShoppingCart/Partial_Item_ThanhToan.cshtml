@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DoAn_Web.Models.ShoppingCartItem>
+@using DoAn_Web.Common
+
+
+@if (Model != null && Model.Any())
+{
+    <h3>Giỏ Hàng <span style="float:right;"><small>@Model.Count()</small></span></h3>
+    
+    var tongtien = decimal.Zero;
+    <div style="border:1px solid #9b00a3">
+        <table class="table">
+            @foreach (var item in Model)
+            {
+                tongtien += item.TotalPrice;
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@Common.FormatNumber(item.TotalPrice, 0)</td>
+                </tr>
+            }
+            <tr>
+                <td>Tổng Tiền</td>
+                <td>@Common.FormatNumber(tongtien, 0)</td>
+            </tr>
+        </table>
+    </div>
+}
+else
+{
+
+}
